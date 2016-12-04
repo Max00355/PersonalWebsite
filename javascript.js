@@ -131,6 +131,7 @@ function handleEnter() {
     var output = executeCommand(command)
     if (output != undefined)
         text.push(output + "\n");
+
 }
 
 function handleControl() {}
@@ -177,6 +178,7 @@ function render() {
 function drawName() {
     cursor = !withCursor ? "<font color='black'>#</font>" : "#"
     $("#terminal").append(user + ":" + directory.join("/") + cursor + " " + currentCommand.join(""))
+	window.scrollTo(0, $(window).height());
 }
 
 setInterval(function() { render(); drawName() }, 0);
