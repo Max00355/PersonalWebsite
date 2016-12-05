@@ -33,7 +33,7 @@ function editProgram(command) {
 }
 
 function processKeyPress() {
-    ignore = ["Shift", "Control"]
+    ignore = ["Shift", "Control", "Escape"]
     if (lastKey !== undefined) {
         if(ignore.indexOf(lastKey) !== -1) {
             lastKey = undefined
