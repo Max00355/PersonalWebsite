@@ -117,6 +117,7 @@ function help() {
     clear - Clears screen\n\
     touch - Create a file\n\
     mkdir - Create a directory\n\
+    edit - Edit a file\n\
     "
     return text
 }
