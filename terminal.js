@@ -45,7 +45,8 @@ var commands = {
     "clear":clear,
     "touch":touch,
     "mkdir":mkdir,
-    "cd":cd
+    "cd":cd,
+    "js":runJs
 }   
 
 // Command Functions
@@ -118,6 +119,7 @@ function help() {
     touch - Create a file\n\
     mkdir - Create a directory\n\
     edit - Edit a file\n\
+    js - Run javascript from a file\n\
     "
     return text
 }

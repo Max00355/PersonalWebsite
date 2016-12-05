@@ -13,6 +13,9 @@ function editProgram(command) {
         return "That file does not exist"
     }
 
+    else if (typeof fs[fileName] === "object")
+        return "That is a folder"
+
     loadFile(fileName, fs);
     indexAt = fileText.length
     setInterval(function() {
