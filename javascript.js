@@ -18,6 +18,7 @@ var fileSystem = {
 var directory = ["/"]
 var user = "guest"
 var withCursor = false
+var lastKey;
 var currentCommand = [];
 var specialKeys = {
     "Shift":handleShift,
@@ -27,10 +28,12 @@ var specialKeys = {
     "Escape":handleEscape,
     "ArrowUp":handleArrowUp,
 }
+var programRunning = false
 
 var useless = ["F1", "F2", "F3", "F4", "F5" ,"F6", "F7", "F8", "F9", "F10", "F11", "F12", "Insert", "Pause", "Tab"]
 
 var commands = {
+    "test":testProgram,
     "ls":ls,
     "help":help,
     "cat":cat,
@@ -171,14 +174,17 @@ function executeCommand(command) {
 }
 
 function render() {
-    $("#terminal").html(text.join(""));
+    if(!programRunning)
+        $("#terminal").html(text.join(""));
 }
 
 
 function drawName() {
-    cursor = !withCursor ? "<font color='black'>#</font>" : "#"
-    $("#terminal").append(user + ":" + directory.join("/") + cursor + " " + currentCommand.join(""))
-	window.scrollTo(0, $(window).height());
+    if(!programRunning) {
+        cursor = !withCursor ? "<font color='black'>#</font>" : "#"
+        $("#terminal").append(user + ":" + directory.join("/") + cursor + " " + currentCommand.join(""))
+	    window.scrollTo(0, $(window).height());
+    }
 }
 
 setInterval(function() { render(); drawName() }, 0);
@@ -190,6 +196,7 @@ setInterval(function() {
 }, 500);
 
 $(window).keydown(function(e) {
+    lastKey = e.key
     if(useless.indexOf(e.key) !== -1) return
     if (specialKeys[e.key] === undefined) {
         currentCommand.push(e.key)
