@@ -25,6 +25,7 @@ function editProgram(command) {
             editProgramRunning = false
             fileText.pop(indexAt)
             addToFS(fileName, fileText.join(""))            
+            currentCommand = []
         }
         //fileText[indexAt] = "|"
         processKeyPress()
