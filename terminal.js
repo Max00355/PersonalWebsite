@@ -15,6 +15,8 @@ var fileSystem = {
         }
     }
 }
+var commandStack = []
+var commandPointer = 0
 var directory = ["/"]
 var user = "guest"
 var withCursor = false
@@ -27,13 +29,16 @@ var specialKeys = {
     "Control":handleControl,
     "Escape":handleEscape,
     "ArrowUp":handleArrowUp,
+    "ArrowLeft":handleArrowLeft,
+    "ArrowRight":handleArrowRight,
+    "ArrowDown":handleArrowDown
 }
 var programRunning = false
 
-var useless = ["F1", "F2", "F3", "F4", "F5" ,"F6", "F7", "F8", "F9", "F10", "F11", "F12", "Insert", "Pause", "Tab"]
+var useless = ["F1", "F2", "F3", "F4", "F5" ,"F6", "F7", "F8", "F9", "F10", "F11", "F12", "Insert", "Pause", "Tab", "CapsLock"]
 
 var commands = {
-    "test":testProgram,
+    "edit":editProgram,
     "ls":ls,
     "help":help,
     "cat":cat,
@@ -119,8 +124,21 @@ function help() {
 // Key Functions
 
 function handleArrowUp() {
-
+    if(commandStack[commandPointer] !== undefined) {
+        currentCommand = commandStack[commandPointer]
+        commandPointer++
+    }
 }
+
+function handleArrowDown() {
+    if(commandPointer > 0) {
+        commandPointer--
+        currentCommand = commandStack[commandPointer]
+        console.log(commandPointer)
+    }
+}
+function handleArrowLeft() {}
+function handleArrowRight() {}
 
 function handleShift() {}
 
@@ -129,6 +147,8 @@ function handleBackspace() {
 }
 
 function handleEnter() {
+    commandStackPointer = 0
+    commandStack.splice(0, 0, currentCommand)
     let command = currentCommand.join("")
     currentCommand = []
     var output = executeCommand(command)
