@@ -1,7 +1,4 @@
-var text = ["Welcome to Frankie's Terminal. \n\n\
-My name is Franke Primerano, I am a software engineer living in San Francisco.\
-\nHere you will find information about me, such as my projects and my resume.\n\
-The catch is that you'll have to know some terminal commands to get where you need to go. Have fun ;)\n\n\
+var text = ["Welcome to Terminal Simulator. \n\n\
 Try typing 'help' for more info\n\n"]
 
 var fileSystem = {
